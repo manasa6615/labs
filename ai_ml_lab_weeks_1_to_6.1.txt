@@ -1,0 +1,352 @@
+ARTIFICIAL INTELLIGENCE & MACHINE LEARNING LAB
+PYTHON PROGRAMS — WEEK-WISE NOTES
+============================================================
+
+
+============================================================
+WEEK 1: BFS AND DFS TRAVERSAL
+============================================================
+
+from collections import deque
+
+graph = {
+    'A': ['B', 'C'],
+    'B': ['D', 'E'],
+    'C': ['F'],
+    'D': [], 'E': [], 'F': []
+}
+
+def bfs(start):
+    visited = set()
+    queue = deque([start])
+    while queue:
+        node = queue.popleft()
+        if node not in visited:
+            print(node, end=" ")
+            visited.add(node)
+            queue.extend(graph[node])
+
+def dfs(node, visited=None):
+    if visited is None:
+        visited = set()
+    if node not in visited:
+        print(node, end=" ")
+        visited.add(node)
+        for neighbour in graph[node]:
+            dfs(neighbour, visited)
+
+print("BFS:")
+bfs('A')
+print("\nDFS:")
+dfs('A')
+
+
+============================================================
+WEEK 2: A* SEARCH ALGORITHM
+============================================================
+
+# A* search: f(n) = g(n) + h(n)
+graph = {
+    'A': [('B', 1), ('C', 3)],
+    'B': [('D', 1), ('E', 5)],
+    'C': [('F', 2)],
+    'D': [('G', 3)],
+    'E': [('G', 1)],
+    'F': [('G', 2)],
+    'G': []
+}
+
+h = {'A': 4, 'B': 3, 'C': 2, 'D': 2, 'E': 1, 'F': 1, 'G': 0}
+
+def astar(start, goal):
+    open_list = [(h[start], 0, start, [start])]
+    visited = set()
+    while open_list:
+        open_list.sort()
+        f, cost, node, path = open_list.pop(0)
+        if node == goal:
+            return path, cost
+        if node in visited:
+            continue
+        visited.add(node)
+        for neighbour, weight in graph[node]:
+            if neighbour not in visited:
+                new_cost = cost + weight
+                open_list.append(
+                    (new_cost + h[neighbour], new_cost,
+                     neighbour, path + [neighbour])
+                )
+    return None, None
+
+path, cost = astar('A', 'G')
+print("Path:", path)
+print("Cost:", cost)
+
+
+============================================================
+WEEK 3: TRAVELLING SALESMAN PROBLEM AND GRAPH COLORING
+============================================================
+
+------------------------------------------------------------
+3A. Travelling Salesman Problem (TSP)
+------------------------------------------------------------
+
+# Brute-force TSP for a small number of cities
+from itertools import permutations
+
+distance = [
+    [0, 10, 15, 20],
+    [10, 0, 35, 25],
+    [15, 35, 0, 30],
+    [20, 25, 30, 0]
+]
+
+n = len(distance)
+best_cost = float("inf")
+best_route = None
+
+for route in permutations(range(1, n)):
+    route = (0,) + route + (0,)
+    cost = sum(distance[route[i]][route[i + 1]]
+               for i in range(n))
+    if cost < best_cost:
+        best_cost = cost
+        best_route = route
+
+print("Best route:", best_route)
+print("Minimum cost:", best_cost)
+
+------------------------------------------------------------
+3B. Graph Coloring Problem
+------------------------------------------------------------
+
+# Backtracking graph coloring
+graph = [
+    [0, 1, 1, 1],
+    [1, 0, 1, 0],
+    [1, 1, 0, 1],
+    [1, 0, 1, 0]
+]
+
+colors = 3
+result = [-1] * len(graph)
+
+def safe(node, color):
+    for neighbour in range(len(graph)):
+        if graph[node][neighbour] and result[neighbour] == color:
+            return False
+    return True
+
+def color_graph(node=0):
+    if node == len(graph):
+        return True
+    for color in range(colors):
+        if safe(node, color):
+            result[node] = color
+            if color_graph(node + 1):
+                return True
+            result[node] = -1
+    return False
+
+if color_graph():
+    print("Colors for vertices:", result)
+else:
+    print("No coloring possible")
+
+
+============================================================
+WEEK 4: KNOWLEDGE REPRESENTATION
+============================================================
+
+# Simple knowledge representation using facts and rules
+facts = {
+    ("is_a", "dog", "animal"),
+    ("has", "dog", "four_legs"),
+    ("is_a", "parrot", "bird")
+}
+
+rules = {
+    "dog": ["animal", "four_legs"],
+    "parrot": ["bird", "animal"]
+}
+
+def ask(subject, property_name):
+    return property_name in rules.get(subject, [])
+
+print("Is dog an animal?", ask("dog", "animal"))
+print("Does a dog have four legs?", ask("dog", "four_legs"))
+print("Is a parrot a bird?", ask("parrot", "bird"))
+
+
+============================================================
+WEEK 5: BAYESIAN NETWORK
+============================================================
+
+# Small Bayesian network: Rain -> Wet Grass
+# P(Rain) = 0.2
+# P(Wet | Rain) = 0.9
+# P(Wet | No Rain) = 0.1
+
+p_rain = 0.2
+p_wet_given_rain = 0.9
+p_wet_given_no_rain = 0.1
+
+p_wet = (p_wet_given_rain * p_rain +
+         p_wet_given_no_rain * (1 - p_rain))
+
+p_rain_given_wet = (
+    p_wet_given_rain * p_rain / p_wet
+)
+
+print("P(Wet Grass) =", round(p_wet, 3))
+print("P(Rain | Wet Grass) =", round(p_rain_given_wet, 3))
+
+
+============================================================
+WEEK 6: HIDDEN MARKOV MODEL (VITERBI ALGORITHM)
+============================================================
+
+# Find the most likely hidden-state sequence
+states = ["Rainy", "Sunny"]
+
+start = {"Rainy": 0.6, "Sunny": 0.4}
+
+transition = {
+    "Rainy": {"Rainy": 0.7, "Sunny": 0.3},
+    "Sunny": {"Rainy": 0.4, "Sunny": 0.6}
+}
+
+emission = {
+    "Rainy": {"walk": 0.1, "shop": 0.4, "clean": 0.5},
+    "Sunny": {"walk": 0.6, "shop": 0.3, "clean": 0.1}
+}
+
+observations = ["walk", "shop", "clean"]
+
+prob = {}
+path = {}
+
+for state in states:
+    prob[state] = start[state] * emission[state][observations[0]]
+    path[state] = [state]
+
+for obs in observations[1:]:
+    new_prob, new_path = {}, {}
+    for current in states:
+        choices = [
+            (prob[previous] * transition[previous][current]
+             * emission[current][obs], previous)
+            for previous in states
+        ]
+        best, previous = max(choices)
+        new_prob[current] = best
+        new_path[current] = path[previous] + [current]
+    prob, path = new_prob, new_path
+
+best_state = max(prob, key=prob.get)
+print("Most likely states:", path[best_state])
+
+
+============================================================
+WEEK 8: DECISION TREE USING ID3
+============================================================
+
+import math
+from collections import Counter
+
+data = [
+    (["Sunny", "Hot"], "No"),
+    (["Sunny", "Cool"], "Yes"),
+    (["Rainy", "Hot"], "Yes"),
+    (["Rainy", "Cool"], "Yes")
+]
+
+attributes = ["Weather", "Temperature"]
+
+
+def entropy(labels):
+    counts = Counter(labels)
+    total = len(labels)
+
+    return -sum(
+        (n / total) * math.log2(n / total)
+        for n in counts.values()
+    )
+
+
+def information_gain(rows, index):
+    labels = [label for _, label in rows]
+    base = entropy(labels)
+
+    values = set(x[index] for x, _ in rows)
+    weighted_entropy = 0
+
+    for value in values:
+        subset = [
+            r for r in rows
+            if r[0][index] == value
+        ]
+
+        weighted_entropy += (
+            len(subset) / len(rows)
+        ) * entropy([label for _, label in subset])
+
+    return base - weighted_entropy
+
+
+def id3(rows, attrs):
+    labels = [label for _, label in rows]
+
+    if len(set(labels)) == 1:
+        return labels[0]
+
+    if not attrs:
+        return Counter(labels).most_common(1)[0][0]
+
+    best_attr = max(
+        attrs,
+        key=lambda a: information_gain(
+            rows, attributes.index(a)
+        )
+    )
+
+    index = attributes.index(best_attr)
+    tree = {best_attr: {}}
+
+    for value in sorted(set(x[index] for x, _ in rows)):
+        subset = [
+            r for r in rows
+            if r[0][index] == value
+        ]
+
+        tree[best_attr][value] = id3(
+            subset,
+            [a for a in attrs if a != best_attr]
+        )
+
+    return tree
+
+
+def print_tree(tree, indent=""):
+    if not isinstance(tree, dict):
+        print(indent + "→ " + tree)
+        return
+
+    for attribute, branches in tree.items():
+        print(indent + attribute)
+
+        items = list(branches.items())
+
+        for i, (value, subtree) in enumerate(items):
+            last = i == len(items) - 1
+
+            print(indent + ("   └── " if last else "   ├── ") + value)
+
+            extension = "       " if last else "   │   "
+            print_tree(subtree, indent + extension)
+
+
+tree = id3(data, attributes)
+
+print("Decision Tree:")
+print_tree(tree)
