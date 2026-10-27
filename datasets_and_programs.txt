@@ -1,0 +1,841 @@
+==================================================
+PART A : DATASETS (Experiments 1 - 6)
+==================================================
+
+
+--------------------------------------------------
+1. student.arff
+--------------------------------------------------
+@relation student
+
+@attribute age {<20, 20-22, >22}
+@attribute gender {Male, Female}
+@attribute study_hours {Low, Medium, High}
+@attribute attendance {Poor, Average, Good}
+@attribute internal_marks numeric
+@attribute final_grade {Pass, Fail}
+
+@data
+<20, Female, High, Good, 85, Pass
+20-22, Male, Low, Poor, 42, Fail
+<20, Male, Medium, Average, 65, Pass
+>22, Female, Low, Poor, 38, Fail
+20-22, Female, High, Good, 90, Pass
+<20, Male, High, Average, 78, Pass
+>22, Male, Low, Average, 50, Fail
+20-22, Female, Medium, Good, 72, Pass
+<20, Female, Low, Poor, 45, Fail
+>22, Male, Medium, Good, 68, Pass
+20-22, Male, High, Good, 88, Pass
+<20, Female, Medium, Average, 60, Pass
+>22, Female, Low, Poor, 30, Fail
+20-22, Male, Medium, Average, 58, Pass
+<20, Male, Low, Poor, 40, Fail
+
+
+--------------------------------------------------
+2. contactlenses.arff   (Apriori)
+--------------------------------------------------
+@relation contact-lenses
+@attribute age {young,pre-presbyopic,presbyopic}
+@attribute spectacle-prescrip {myope,hypermetrope}
+@attribute astigmatism {no,yes}
+@attribute tear-prod-rate {reduced,normal}
+@attribute contact-lenses {soft,hard,none}
+@data
+young,myope,no,reduced,none
+young,myope,no,normal,soft
+young,myope,yes,reduced,none
+young,myope,yes,normal,hard
+young,hypermetrope,no,reduced,none
+young,hypermetrope,no,normal,soft
+young,hypermetrope,yes,reduced,none
+young,hypermetrope,yes,normal,hard
+pre-presbyopic,myope,no,reduced,none
+pre-presbyopic,myope,no,normal,soft
+pre-presbyopic,myope,yes,reduced,none
+pre-presbyopic,myope,yes,normal,hard
+pre-presbyopic,hypermetrope,no,reduced,none
+pre-presbyopic,hypermetrope,no,normal,soft
+pre-presbyopic,hypermetrope,yes,reduced,none
+pre-presbyopic,hypermetrope,yes,normal,none
+presbyopic,myope,no,reduced,none
+presbyopic,myope,no,normal,none
+presbyopic,myope,yes,reduced,none
+presbyopic,myope,yes,normal,hard
+presbyopic,hypermetrope,no,reduced,none
+presbyopic,hypermetrope,no,normal,soft
+presbyopic,hypermetrope,yes,reduced,none
+presbyopic,hypermetrope,yes,normal,none
+
+
+--------------------------------------------------
+3. contactlenses.arff   (FP-Growth)  - same nominal dataset as above
+--------------------------------------------------
+@relation contact-lenses
+@attribute age {young,pre-presbyopic,presbyopic}
+@attribute spectacle-prescrip {myope,hypermetrope}
+@attribute astigmatism {no,yes}
+@attribute tear-prod-rate {reduced,normal}
+@attribute contact-lenses {soft,hard,none}
+@data
+young,myope,no,reduced,none
+young,myope,no,normal,soft
+young,myope,yes,reduced,none
+young,myope,yes,normal,hard
+young,hypermetrope,no,reduced,none
+young,hypermetrope,no,normal,soft
+young,hypermetrope,yes,reduced,none
+young,hypermetrope,yes,normal,hard
+pre-presbyopic,myope,no,reduced,none
+pre-presbyopic,myope,no,normal,soft
+pre-presbyopic,myope,yes,reduced,none
+pre-presbyopic,myope,yes,normal,hard
+pre-presbyopic,hypermetrope,no,reduced,none
+pre-presbyopic,hypermetrope,no,normal,soft
+pre-presbyopic,hypermetrope,yes,reduced,none
+pre-presbyopic,hypermetrope,yes,normal,none
+presbyopic,myope,no,reduced,none
+presbyopic,myope,no,normal,none
+presbyopic,myope,yes,reduced,none
+presbyopic,myope,yes,normal,hard
+presbyopic,hypermetrope,no,reduced,none
+presbyopic,hypermetrope,no,normal,soft
+presbyopic,hypermetrope,yes,reduced,none
+presbyopic,hypermetrope,yes,normal,none
+
+
+3 (binary version).  contact-lenses-binary.arff
+--------------------------------------------------
+@relation contact_lenses_binary
+@attribute age_young {0,1}
+@attribute age_pre_presbyopic {0,1}
+@attribute age_presbyopic {0,1}
+@attribute spectacle_myope {0,1}
+@attribute spectacle_hypermetrope {0,1}
+@attribute astigmatism_no {0,1}
+@attribute astigmatism_yes {0,1}
+@attribute tear_reduced {0,1}
+@attribute tear_normal {0,1}
+@attribute contact_hard {0,1}
+@attribute contact_soft {0,1}
+@attribute contact_none {0,1}
+@data
+1,0,0,1,0,1,0,1,0,0,0,1
+1,0,0,1,0,1,0,0,1,0,1,0
+1,0,0,1,0,0,1,1,0,0,0,1
+1,0,0,1,0,0,1,0,1,1,0,0
+1,0,0,0,1,1,0,1,0,0,0,1
+1,0,0,0,1,1,0,0,1,0,1,0
+1,0,0,0,1,0,1,1,0,0,0,1
+1,0,0,0,1,0,1,0,1,1,0,0
+0,1,0,1,0,1,0,1,0,0,0,1
+0,1,0,1,0,1,0,0,1,0,1,0
+0,1,0,1,0,0,1,1,0,0,0,1
+0,1,0,1,0,0,1,0,1,1,0,0
+0,1,0,0,1,1,0,1,0,0,0,1
+0,1,0,0,1,1,0,0,1,0,1,0
+0,1,0,0,1,0,1,1,0,0,0,1
+0,1,0,0,1,0,1,0,1,0,0,1
+0,0,1,1,0,1,0,1,0,0,0,1
+0,0,1,1,0,1,0,0,1,0,1,0
+0,0,1,1,0,0,1,1,0,0,0,1
+0,0,1,1,0,0,1,0,1,1,0,0
+0,0,1,0,1,1,0,1,0,0,0,1
+0,0,1,0,1,1,0,0,1,0,1,0
+0,0,1,0,1,0,1,1,0,0,0,1
+0,0,1,0,1,0,1,0,1,0,0,1
+
+
+--------------------------------------------------
+4. employee.arff   (ID3 and J48)
+--------------------------------------------------
+@relation employee
+@attribute age {25, 27, 28, 29, 30, 35, 48}
+@attribute salary{10k,15k,17k,20k,25k,30k,35k,32k}
+@attribute performance {good, avg, poor}
+@data
+%
+25, 10k, poor
+27, 15k, poor
+27, 17k, poor
+28, 17k, poor
+29, 20k, avg
+30, 25k, avg
+29, 25k, avg
+30, 20k, avg
+35, 32k, good
+48, 35k, good
+48, 32k, good
+%
+
+
+--------------------------------------------------
+5. employee.arff   (Naive Bayes) - same dataset as experiment 4
+--------------------------------------------------
+@relation employee
+@attribute age {25, 27, 28, 29, 30, 35, 48}
+@attribute salary{10k,15k,17k,20k,25k,30k,35k,32k}
+@attribute performance {good, avg, poor}
+@data
+%
+25, 10k, poor
+27, 15k, poor
+27, 17k, poor
+28, 17k, poor
+29, 20k, avg
+30, 25k, avg
+29, 25k, avg
+30, 20k, avg
+35, 32k, good
+48, 35k, good
+48, 32k, good
+%
+
+
+--------------------------------------------------
+6. iris.arff   (Simple K-Means)
+--------------------------------------------------
+@relation iris
+@attribute sepallength numeric
+@attribute sepalwidth numeric
+@attribute petallength numeric
+@attribute petalwidth numeric
+@attribute class {Iris-setosa,Iris-versicolor,Iris-virginica}
+@data
+5.1,3.5,1.4,0.2,Iris-setosa
+4.9,3.0,1.4,0.2,Iris-setosa
+4.7,3.2,1.3,0.2,Iris-setosa
+4.6,3.1,1.5,0.2,Iris-setosa
+5.0,3.6,1.4,0.2,Iris-setosa
+5.4,3.9,1.7,0.4,Iris-setosa
+4.6,3.4,1.4,0.3,Iris-setosa
+5.0,3.4,1.5,0.2,Iris-setosa
+4.4,2.9,1.4,0.2,Iris-setosa
+4.9,3.1,1.5,0.1,Iris-setosa
+5.4,3.7,1.5,0.2,Iris-setosa
+4.8,3.4,1.6,0.2,Iris-setosa
+4.8,3.0,1.4,0.1,Iris-setosa
+4.3,3.0,1.1,0.1,Iris-setosa
+5.8,4.0,1.2,0.2,Iris-setosa
+5.7,4.4,1.5,0.4,Iris-setosa
+5.4,3.9,1.3,0.4,Iris-setosa
+5.1,3.5,1.4,0.3,Iris-setosa
+4.9,3.1,1.5,0.1,Iris-setosa
+4.7,3.2,1.6,0.2,Iris-setosa
+5.1,3.8,1.5,0.3,Iris-setosa
+5.4,3.4,1.7,0.2,Iris-setosa
+5.1,3.7,1.5,0.4,Iris-setosa
+4.6,3.6,1.0,0.2,Iris-setosa
+5.1,3.3,1.7,0.5,Iris-setosa
+4.8,3.4,1.9,0.2,Iris-setosa
+5.0,3.0,1.6,0.2,Iris-setosa
+5.0,3.4,1.6,0.4,Iris-setosa
+5.2,3.5,1.5,0.2,Iris-setosa
+5.2,3.4,1.4,0.2,Iris-setosa
+4.7,3.2,1.6,0.2,Iris-setosa
+4.8,3.1,1.6,0.2,Iris-setosa
+5.4,3.4,1.5,0.4,Iris-setosa
+5.2,4.1,1.5,0.1,Iris-setosa
+5.5,4.2,1.4,0.2,Iris-setosa
+4.9,3.1,1.5,0.2,Iris-setosa
+5.0,3.2,1.2,0.2,Iris-setosa
+5.5,3.5,1.3,0.2,Iris-setosa
+4.9,3.6,1.4,0.1,Iris-setosa
+4.4,3.0,1.3,0.2,Iris-setosa
+5.1,3.4,1.5,0.2,Iris-setosa
+5.0,3.5,1.3,0.3,Iris-setosa
+4.5,2.3,1.3,0.3,Iris-setosa
+4.4,3.2,1.3,0.2,Iris-setosa
+5.0,3.5,1.6,0.6,Iris-setosa
+5.1,3.8,1.9,0.4,Iris-setosa
+4.8,3.0,1.4,0.3,Iris-setosa
+5.1,3.8,1.6,0.2,Iris-setosa
+4.6,3.2,1.4,0.2,Iris-setosa
+5.3,3.7,1.5,0.2,Iris-setosa
+7.0,3.2,4.7,1.4,Iris-versicolor
+6.4,3.2,4.5,1.5,Iris-versicolor
+6.9,3.1,4.9,1.5,Iris-versicolor
+5.5,2.3,4.0,1.3,Iris-versicolor
+6.5,2.8,4.6,1.5,Iris-versicolor
+5.7,2.8,4.5,1.3,Iris-versicolor
+6.3,3.3,4.7,1.6,Iris-versicolor
+4.9,2.4,3.3,1.0,Iris-versicolor
+6.6,2.9,4.6,1.3,Iris-versicolor
+5.2,2.7,3.9,1.4,Iris-versicolor
+5.0,2.0,3.5,1.0,Iris-versicolor
+5.9,3.0,4.2,1.5,Iris-versicolor
+6.0,2.2,4.0,1.0,Iris-versicolor
+6.1,2.9,4.7,1.4,Iris-versicolor
+5.6,2.9,3.6,1.3,Iris-versicolor
+6.7,3.1,4.4,1.4,Iris-versicolor
+5.6,3.0,4.5,1.5,Iris-versicolor
+5.8,2.7,4.1,1.0,Iris-versicolor
+6.2,2.2,4.5,1.5,Iris-versicolor
+5.6,2.5,3.9,1.1,Iris-versicolor
+5.9,3.2,4.8,1.8,Iris-versicolor
+6.1,2.8,4.0,1.3,Iris-versicolor
+6.3,2.5,4.9,1.5,Iris-versicolor
+6.1,2.8,4.7,1.2,Iris-versicolor
+6.4,2.9,4.3,1.3,Iris-versicolor
+6.6,3.0,4.4,1.4,Iris-versicolor
+6.8,2.8,4.8,1.4,Iris-versicolor
+6.7,3.0,5.0,1.7,Iris-versicolor
+6.0,2.9,4.5,1.5,Iris-versicolor
+5.7,2.6,3.5,1.0,Iris-versicolor
+5.5,2.4,3.8,1.1,Iris-versicolor
+5.5,2.4,3.7,1.0,Iris-versicolor
+5.8,2.7,3.9,1.2,Iris-versicolor
+6.0,2.7,5.1,1.6,Iris-versicolor
+5.4,3.0,4.5,1.5,Iris-versicolor
+6.0,3.4,4.5,1.6,Iris-versicolor
+6.7,3.1,4.7,1.5,Iris-versicolor
+6.3,2.3,4.4,1.3,Iris-versicolor
+5.6,3.0,4.1,1.3,Iris-versicolor
+5.5,2.5,4.0,1.3,Iris-versicolor
+5.5,2.6,4.4,1.2,Iris-versicolor
+6.1,3.0,4.6,1.4,Iris-versicolor
+5.8,2.6,4.0,1.2,Iris-versicolor
+5.0,2.3,3.3,1.0,Iris-versicolor
+5.6,2.7,4.2,1.3,Iris-versicolor
+5.7,3.0,4.2,1.2,Iris-versicolor
+5.7,2.9,4.2,1.3,Iris-versicolor
+6.2,2.9,4.3,1.3,Iris-versicolor
+5.1,2.5,3.0,1.1,Iris-versicolor
+5.7,2.8,4.1,1.3,Iris-versicolor
+6.3,3.3,6.0,2.5,Iris-virginica
+5.8,2.7,5.1,1.9,Iris-virginica
+7.1,3.0,5.9,2.1,Iris-virginica
+6.3,2.9,5.6,1.8,Iris-virginica
+6.5,3.0,5.8,2.2,Iris-virginica
+7.6,3.0,6.6,2.1,Iris-virginica
+4.9,2.5,4.5,1.7,Iris-virginica
+7.3,2.9,6.3,1.8,Iris-virginica
+6.7,2.5,5.8,1.8,Iris-virginica
+7.2,3.6,6.1,2.5,Iris-virginica
+6.5,3.2,5.1,2.0,Iris-virginica
+6.4,2.7,5.3,1.9,Iris-virginica
+6.8,3.0,5.5,2.1,Iris-virginica
+5.7,2.5,5.0,2.0,Iris-virginica
+5.8,2.8,5.1,2.4,Iris-virginica
+6.4,3.2,5.3,2.3,Iris-virginica
+6.5,3.0,5.5,1.8,Iris-virginica
+7.7,3.8,6.7,2.2,Iris-virginica
+7.7,2.6,6.9,2.3,Iris-virginica
+6.0,2.2,5.0,1.5,Iris-virginica
+6.9,3.2,5.7,2.3,Iris-virginica
+5.6,2.8,4.9,2.0,Iris-virginica
+7.7,2.8,6.7,2.0,Iris-virginica
+6.3,2.7,4.9,1.8,Iris-virginica
+6.7,3.3,5.7,2.1,Iris-virginica
+7.2,3.2,6.0,1.8,Iris-virginica
+6.2,2.8,4.8,1.8,Iris-virginica
+6.1,3.0,4.9,1.8,Iris-virginica
+6.4,2.8,5.6,2.1,Iris-virginica
+7.2,3.0,5.8,1.6,Iris-virginica
+7.4,2.8,6.1,1.9,Iris-virginica
+7.9,3.8,6.4,2.0,Iris-virginica
+6.4,2.8,5.6,2.2,Iris-virginica
+6.3,2.8,5.1,1.5,Iris-virginica
+6.1,2.6,5.6,1.4,Iris-virginica
+7.7,3.0,6.1,2.3,Iris-virginica
+6.3,3.4,5.6,2.4,Iris-virginica
+6.4,3.1,5.5,1.8,Iris-virginica
+6.0,3.0,4.8,1.8,Iris-virginica
+6.9,3.1,5.4,2.1,Iris-virginica
+6.7,3.1,5.6,2.4,Iris-virginica
+6.9,3.1,5.1,2.3,Iris-virginica
+5.8,2.7,5.1,1.9,Iris-virginica
+6.8,3.2,5.9,2.3,Iris-virginica
+6.7,3.3,5.7,2.5,Iris-virginica
+6.7,3.0,5.2,2.3,Iris-virginica
+6.3,2.5,5.0,1.9,Iris-virginica
+6.5,3.0,5.2,2.0,Iris-virginica
+6.2,3.4,5.4,2.3,Iris-virginica
+5.9,3.0,5.1,1.8,Iris-virginica
+
+
+
+==================================================
+PART B : R PROGRAMS (Experiments 8 - 12)
+==================================================
+
+
+--------------------------------------------------
+8a. Mean, Median & Mode
+--------------------------------------------------
+get_mode <- function(x) {
+  if (length(x) == 0) {
+    return(NA)
+  }
+  frequency <- table(x)
+  max_frequency <- max(frequency)
+  if (max_frequency == 1) {
+    return("No unique mode")
+  }
+
+  modes <- names(frequency)[frequency == max_frequency]
+
+  return(modes)
+}
+
+data1 <- c(10, 20, 30, 40, 50)
+print(data1)
+cat("Mean :", mean(data1), "\n")
+cat("Median :", median(data1), "\n")
+cat("Mode :", get_mode(data1), "\n")
+
+
+--------------------------------------------------
+8b. Covariance and Regression Analysis
+--------------------------------------------------
+hours <- c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+marks <- c(35, 40, 45, 50, 55, 60, 65, 70, 75, 80)
+
+cat("Sample Data\n")
+cat("Hours Studied:\n")
+print(hours)
+cat("\nExam Marks:\n")
+print(marks)
+
+cat(" COVARIANCE\n")
+covariance <- cov(hours, marks)
+cat("Covariance =", covariance, "\n")
+
+cat("CORRELATION\n")
+correlation <- cor(hours, marks)
+cat("Correlation =", correlation, "\n")
+
+cat(" LINEAR REGRESSION\n")
+model <- lm(marks ~ hours)
+print(model)
+
+intercept <- coef(model)[1]
+slope <- coef(model)[2]
+cat("\nIntercept =", intercept)
+cat("\nSlope =", slope)
+cat("\n\nRegression Equation:\n")
+cat("Marks =", intercept, "+", slope, "* Hours\n")
+
+
+--------------------------------------------------
+9. Linear, Multiple, Logistic and Poisson Regression
+--------------------------------------------------
+hours <- c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+marks <- c(35, 40, 45, 50, 55, 60, 65, 70, 75, 80)
+attendance <- c(60, 65, 70, 72, 75, 78, 80, 85, 90, 95)
+assignments <- c(2, 3, 3, 4, 5, 5, 6, 7, 8, 9)
+
+data <- data.frame(
+  Hours = hours,
+  Marks = marks,
+  Attendance = attendance,
+  Assignments = assignments
+)
+
+print(data)
+
+cat("A) LINEAR REGRESSION\n")
+linear_model <- lm(Marks ~ Hours, data = data)
+print(linear_model)
+
+cat("\nIntercept =", coef(linear_model)[1])
+cat("\nSlope =", coef(linear_model)[2])
+
+cat("\n\nRegression Equation:\n")
+cat(
+  "Marks =",
+  round(coef(linear_model)[1], 2),
+  "+",
+  round(coef(linear_model)[2], 2),
+  "* Hours\n"
+)
+
+cat("\nLinear Regression Summary:\n")
+print(summary(linear_model))
+
+plot(
+  hours,
+  marks,
+  main = "Linear Regression: Hours vs Marks",
+  xlab = "Hours Studied",
+  ylab = "Exam Marks",
+  pch = 19
+)
+
+abline(
+  linear_model,
+  lwd = 2
+)
+
+grid()
+
+cat("B) MULTIPLE REGRESSION\n")
+multiple_model <- lm(
+  Marks ~ Hours + Attendance + Assignments,
+  data = data
+)
+
+print(multiple_model)
+
+cat("\nMultiple Regression Coefficients:\n")
+print(coef(multiple_model))
+
+cat("\nMultiple Regression Summary:\n")
+print(summary(multiple_model))
+
+data$Predicted_Marks <- predict(multiple_model)
+
+plot(
+  data$Marks,
+  data$Predicted_Marks,
+  main = "Multiple Regression: Actual vs Predicted Marks",
+  xlab = "Actual Marks",
+  ylab = "Predicted Marks",
+  pch = 19
+)
+
+abline(
+  a = 0,
+  b = 1,
+  lwd = 2
+)
+
+grid()
+
+cat("C) LOGISTIC REGRESSION\n")
+data$Pass <- ifelse(data$Marks >= 50, 1, 0)
+
+cat("\nPass/Fail Data:\n")
+print(
+  data.frame(
+    Hours = data$Hours,
+    Marks = data$Marks,
+    Pass = data$Pass
+  )
+)
+
+logistic_model <- glm(
+  Pass ~ Hours,
+  data = data,
+  family = binomial
+)
+
+print(logistic_model)
+
+cat("\nLogistic Regression Summary:\n")
+print(summary(logistic_model))
+
+data$Probability <- predict(
+  logistic_model,
+  type = "response"
+)
+
+cat("\nPredicted Probabilities:\n")
+print(
+  data.frame(
+    Hours = data$Hours,
+    Marks = data$Marks,
+    Probability = round(data$Probability, 4)
+  )
+)
+
+plot(
+  data$Hours,
+  data$Pass,
+  main = "Logistic Regression: Hours vs Probability of Passing",
+  xlab = "Hours Studied",
+  ylab = "Probability of Passing",
+  pch = 19,
+  ylim = c(0, 1)
+)
+
+order_index <- order(data$Hours)
+
+lines(
+  data$Hours[order_index],
+  data$Probability[order_index],
+  lwd = 2
+)
+
+grid()
+
+cat("D) POISSON REGRESSION\n")
+correct_answers <- c(
+  2, 3, 4, 5, 6,
+  7, 8, 9, 10, 11
+)
+
+poisson_data <- data.frame(
+  Hours = hours,
+  Correct_Answers = correct_answers
+)
+
+cat("\nPoisson Regression Data:\n")
+print(poisson_data)
+
+poisson_model <- glm(
+  Correct_Answers ~ Hours,
+  data = poisson_data,
+  family = poisson
+)
+
+print(poisson_model)
+
+cat("\nPoisson Regression Summary:\n")
+print(summary(poisson_model))
+
+poisson_data$Predicted <- predict(
+  poisson_model,
+  type = "response"
+)
+
+cat("\nActual and Predicted Counts:\n")
+print(poisson_data)
+
+plot(
+  poisson_data$Hours,
+  poisson_data$Correct_Answers,
+  main = "Poisson Regression: Hours vs Correct Answers",
+  xlab = "Hours Studied",
+  ylab = "Number of Correct Answers",
+  pch = 19
+)
+
+order_index <- order(poisson_data$Hours)
+
+lines(
+  poisson_data$Hours[order_index],
+  poisson_data$Predicted[order_index],
+  lwd = 2
+)
+
+grid()
+
+
+--------------------------------------------------
+10a. Time Series Analysis
+--------------------------------------------------
+install.packages("forecast")
+library(lubridate)
+library(forecast)
+
+x <- c(580, 7813, 28266, 59287, 75700,
+       87820, 95314, 126214, 218843,
+       471497, 936851, 1508725, 2072113)
+
+mts <- ts(x, start = decimal_date(ymd("2020-01-22")), frequency = 365.25 / 7)
+
+fit <- auto.arima(mts)
+
+forecasted_values <- forecast(fit, 5)
+print(forecasted_values)
+
+plot(forecasted_values, xlab = "Weekly Data", ylab = "Total Positive Cases",
+     main = "COVID-19 Pandemic", col.main = "darkgreen")
+
+
+--------------------------------------------------
+10b. Non-Linear Least Square
+--------------------------------------------------
+# defining x and y coordinates
+x <- seq(0, 10, 0.1)
+y <- rnorm(101, 5, 1)
+
+# output to be present as PNG file
+png(file = "nls.png")
+
+# Taking the model to get fitted
+m <- nls(y ~ a * x ^ 3 + b * x + c,
+         start = list(a = 1, b = 2, c = 1))
+
+# plot the graph
+plot(x, y, col.lab = "darkgreen",
+     col.axis = "darkgreen")
+
+# plot the graph with new fitting line or regression line
+lines(x, predict(m))
+
+# saving the file
+dev.off()
+
+# print minimum residual or error value
+print(sum(resid(m)^2))
+
+
+--------------------------------------------------
+10c. Decision Tree
+--------------------------------------------------
+install.packages("party")
+
+# Load the party package. It will automatically load other dependent packages.
+library(party)
+
+# Print some records from data set readingSkills.
+print(head(readingSkills))
+
+# Create the input data frame.
+input.dat <- readingSkills[c(1:105),]
+
+# Give the chart file a name.
+png(file = "decision_tree.png")
+
+# Create the tree.
+output.tree <- ctree(
+  nativeSpeaker ~ age + shoeSize + score,
+  data = input.dat)
+
+# Plot the tree.
+plot(output.tree)
+
+# Save the file.
+dev.off()
+
+
+--------------------------------------------------
+11a. Normal Distribution
+--------------------------------------------------
+# Create a sequence of numbers between -10 and 10 incrementing by 0.1.
+x <- seq(-10, 10, by = .1)
+
+# Choose the mean as 2.5 and standard deviation as 0.5.
+y <- dnorm(x, mean = 2.5, sd = 0.5)
+
+# Give the chart file a name.
+png(file = "dnorm.png")
+
+plot(x, y)
+
+# Save the file.
+dev.off()
+
+# Create a sequence of numbers between -10 and 10 incrementing by 0.2.
+x <- seq(-10, 10, by = .2)
+
+# Choose the mean as 2.5 and standard deviation as 2.
+y <- pnorm(x, mean = 2.5, sd = 2)
+
+# Give the chart file a name.
+png(file = "pnorm.png")
+
+# Plot the graph.
+plot(x, y)
+
+# Save the file.
+dev.off()
+
+# Create a sequence of probability values incrementing by 0.02.
+x <- seq(0, 1, by = 0.02)
+
+# Choose the mean as 2 and standard deviation as 1.
+y <- qnorm(x, mean = 2, sd = 1)
+
+# Give the chart file a name.
+png(file = "qnorm.png")
+
+# Plot the graph.
+plot(x, y)
+
+# Save the file.
+dev.off()
+
+# Create a sample of 50 numbers which are normally distributed.
+y <- rnorm(50)
+
+# Give the chart file a name.
+png(file = "rnorm.png")
+
+# Plot the histogram for this sample.
+hist(y, main = "Normal DIstribution")
+
+# Save the file.
+dev.off()
+
+
+--------------------------------------------------
+11b. Binomial Distribution
+--------------------------------------------------
+# Create a sample of 50 numbers which are incremented by 1.
+x <- seq(0, 50, by = 1)
+
+# Create the binomial distribution.
+y <- dbinom(x, 50, 0.5)
+
+# Give the chart file a name.
+png(file = "dbinom.png")
+
+# Plot the graph for this sample.
+plot(x, y)
+
+# Save the file.
+dev.off()
+
+# Probability of getting 26 or less heads from a 51 tosses of a coin.
+x <- pbinom(26, 51, 0.5)
+print(x)
+
+# How many heads will have a probability of 0.25 will come out when a coin
+# is tossed 51 times.
+x <- qbinom(0.25, 51, 1/2)
+print(x)
+
+# Find 8 random values from a sample of 150 with probability of 0.4.
+x <- rbinom(8, 150, .4)
+print(x)
+
+
+--------------------------------------------------
+12a. Chi-Square Test
+--------------------------------------------------
+observed <- c(50, 30, 20)
+expected <- c(40, 40, 20)
+
+cat("Test Case 1 : Valid Dataset\n")
+
+print(
+  chisq.test(
+    x = observed,
+    p = expected / sum(expected)
+  )
+)
+
+barplot(rbind(observed, expected),
+        beside = TRUE,
+        names.arg = c("A", "B", "C"),
+        col = c("skyblue", "orange"),
+        legend.text = c("Observed", "Expected"),
+        main = "Chi-Square Test",
+        xlab = "Categories",
+        ylab = "Frequency")
+
+
+--------------------------------------------------
+12b. t-Test
+--------------------------------------------------
+group1 <- c(70, 75, 80, 85, 90)
+group2 <- c(65, 72, 78, 82, 88)
+
+t.test(group1, group2)
+
+boxplot(group1, group2,
+        names = c("Group1", "Group2"),
+        col = c("skyblue", "orange"),
+        main = "T-Test Visualization",
+        xlab = "Groups",
+        ylab = "Marks")
+
+
+--------------------------------------------------
+12c. F-Test
+--------------------------------------------------
+group1 <- c(70, 75, 80, 85, 90)
+group2 <- c(65, 68, 72, 78, 88)
+
+var.test(group1, group2)
+
+boxplot(group1, group2,
+        names = c("Group1", "Group2"),
+        col = c("skyblue", "orange"),
+        main = "F-Test Visualization",
+        xlab = "Groups",
+        ylab = "Values")
